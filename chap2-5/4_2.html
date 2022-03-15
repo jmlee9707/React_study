@@ -1,0 +1,60 @@
+<!-- 4-2 PROPS-prop types -->
+
+<!-- fontSize: fontSize -> 이름이 같기 때문에 그냥 fontSize 로 적어줄 수 있음
+propTypes
+-> 내가 어떤 타입이고 어떤 모양인 prop을 받고 있는지 체크해줌
+Btn.propTypes = {
+text: PropTypes.string,
+fontSize: PropTypes.number,
+};
+-> text가 string이 아니면 오류를 console에서 보여줌
+
+function Btn({ text, fontSize = 16 })
+-> 정의되지 않은 변수에 관한 기본값 주는 것도 가능 -->
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+    <script src="https://unpkg.com/browse/prop-types@15.8.1/prop-types.js"></script>
+    
+    <script type = "text/babel"> // 타입 적어줘야 함
+        
+        function Btn({text, fontSize = 12}){
+            return (
+                <button
+                style={{
+                backgroundColor : "tomato",
+                color : "white",
+                padding: "10px 20px",
+                border : 0,
+                borderRadius : 10,
+                fontSize : props.fontSize,
+                }}
+                >
+                {text}
+                </button>);
+        }
+
+        Btn.propTypes = {
+            text: PropTypes.string.isRequired, 
+            fontSize : PropTypes.number,
+        };
+
+        function App() { 
+            return (
+                <div>
+                    <Btn text = "Save Changes" fontSize ={18}/>
+                    <Btn text ={"Continue"}/>
+                </div>
+            );
+        }
+        
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />,root); // root안에 btn을 render
+    </script>
+</html>

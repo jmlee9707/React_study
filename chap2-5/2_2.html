@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!-- 리액트가 html을 생성하도록 하려면 react-dom을 사용해야함 -->
+				<!--비어 있는 div는 reactDOM이 react element를 가져다 놓는 곳-->
+        <div id="root"></div>
+    </body>
+    <!--react import-->
+    <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script>
+        const root = document.getElementById("root");
+        // html tag와 이름이 같을 필요가 없지만
+        //react.createElement 괄호 사이에 오는 이름은 생성하고자 하는 html 태그와 같은 이름
+        const span = React.createElement(
+            "span", 
+            {id: "sexy-span", style:{color : "red"}}, 
+            "Hello I'm a span"); 
+        // body 안에 reacy element를 가져다 주어야 함, 두번쨰 argument로 property를 줄수 있음
+        // 세번쨰 argument는 span의 content(내용)
+        ReactDOM.render(span,root); // react element를 가지고 HTML로 만들어 배치 = show it to the user 사용자에게 보여줌 
+        // root 안에 span을 render
+   </script>
+</html>

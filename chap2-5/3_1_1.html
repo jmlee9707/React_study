@@ -1,0 +1,41 @@
+<!-- //3-1 수정 전 -->
+<!DOCTYPE html>
+<html>
+    <body>
+        <!-- <span>Total clicks : 0</span>
+        <button id="btn">Click me</button> -->
+        <div id="root"></div>
+    </body>
+    <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    
+    <script type = "text/babel"> // 타입 적어줘야 함
+        const root = document.getElementById("root");
+        let counter = 0;
+        function countUp(){
+            counter = counter + 1;
+            render(); // container 컴포넌트가 바뀐 counter 값을 가지고 업데이트
+            // 전체를 전부 재생성할 필요옶이 바뀐부분만 새로 생성할 수 있도록 도와줌
+        }
+        // 함수로 생성 위의 방법과 동일
+
+        function render(){
+            ReactDOM.render(<App />, root);  // render가 최초로 호출될 떄, container 컴포넌트를 root div에 담아주기
+        }
+        function App() { // 함수가 호출되면 react element가 반환
+            return(
+            // 이벤트리스너 등록
+            // h3 react요소는 total click과 추가해준 변수를 가지고 있음
+            <div>
+                <h3>Total Clicks : {counter}</h3> 
+                <button onClick = {countUp()}>Click me</button> 
+            </div>
+            );
+        }
+        // ReactDOM.render(btn,root); // root안에 btn을 render
+        render(); // contanier 리렌더링 해주어야 UI에 반영되어 count가 증가
+
+    </script>
+</html>

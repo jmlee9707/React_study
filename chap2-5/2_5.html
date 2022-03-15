@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!-- <span>Total clicks : 0</span>
+        <button id="btn">Click me</button> -->
+        <div id="root"></div>
+    </body>
+    <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    
+    <script type = "text/babel"> // 타입 적어줘야 함
+        const root = document.getElementById("root");
+        function Title() {
+            return(
+                <h3 id="title" onMouseEnter = {() => console.log("mouse Enter")}>
+                Hello I'm a title
+                </h3>
+            );
+        }
+        // 함수로 생성 위의 방법과 동일
+        const Button = () => 
+            <button 
+            style = {{backgroundColor : "tomato"}} onClick = {() => console.log("I'm clicked")} >
+            Click me
+            </button>
+            
+        
+            // <!--component의 첫글자는 반드시 대문자!!, 소문자이면 html 태그라고 생각하는 react, jsx..-->
+        // const Container = <div>Title Button</div> // 이런식이면 단지 텍스트만 출력, 렌더링 힐 요소를 함수로 만들어서 가져와야 함
+        const Container = () =>
+            <div>
+                <Title /> 
+                <Button />
+            </div>
+        const container = React.createElement("div", null, [Title, Button]); // 2개를 모두 render 하고 싶을 때 배열 사용 
+        // ReactDOM.render(btn,root); // root안에 btn을 render
+        ReactDOM.render(<Container />, root); // 2개의 component를 가지는 component를 생성, 여러개를 render 하고 싶을때 div 태그를 이용
+
+    </script>
+</html>

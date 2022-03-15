@@ -1,0 +1,44 @@
+<!-- // 3-1 수정 후, 배열을 이용해 간단하게 수정 가능 -->
+<!DOCTYPE html>
+<html>
+    <body>
+        <!-- <span>Total clicks : 0</span>
+        <button id="btn">Click me</button> -->
+        <div id="root"></div>
+    </body>
+    <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    
+    <script type = "text/babel"> // 타입 적어줘야 함
+        // 리약트 어플 내에서 데이터를 보관하고 자동으로 리렌더링을 불러올 수 있는 방법 
+        // 리액트 어플리케이션을 다룰 때 어디에 데이터를 담으면 되는지
+
+        const root = document.getElementById("root");
+        //let counter = 0;  // useState 의 첫번쨰 배열 초기 값
+        // function countUp(){ // useState의 두번쨰 배열 함수 값 
+        //     // code
+        // }
+
+        function render(){
+        }
+        function App() { // 함수가 호출되면 react element가 반환
+            // const data = React.useState(0); // undefined, 함수(데이터를 바꿀 때 사용하는) 하나를 받아옴, 초기값 설정도 가능-괄호 안
+            // const counter = data[0];
+            // const modifier = data[1];
+            const [counter, modifier] = React.useState(0);
+            return(
+            // 이벤트리스너 등록
+            // h3 react요소는 total click과 추가해준 변수를 가지고 있음
+            <div>
+                <h3>Total Clicks : {counter}</h3> 
+                <button>Click me</button> 
+            </div>
+            );
+        }
+        // ReactDOM.render(btn,root); // root안에 btn을 render
+        render(); // contanier 리렌더링 해주어야 UI에 반영되어 count가 증가
+
+    </script>
+</html>

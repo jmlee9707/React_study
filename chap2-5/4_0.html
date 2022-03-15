@@ -1,0 +1,45 @@
+<!-- 4-0 PROPS -->
+
+<!-- props = 부모 컴포넌트로부터 자식 컴포넌트에게 데이터를 전송하는 방식.
+부모에 props를 사용하면 자식 컴포넌트(함수)의 인자로 객체가 들어가게 됨.
+하나의 버튼을 만들어서 props를 이용해 버튼의 스타일을 관리해서 재사용 할 수 있게됨. -->
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js""></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    
+    <script type = "text/babel"> // 타입 적어줘야 함
+        
+        function Btn({text, big}){
+            // console.log(props); 
+            return (<button style={{
+                backgroundColor : "tomato",
+                color : "white",
+                padding: "10px 20px",
+                border : 0,
+                borderRadius : 10,
+                fontSize : big ? 18 : 16
+                
+            }}>
+            {text}</button>)
+        };
+
+        function App() { 
+            return (
+                <div>
+                    <Btn text = "Save Changes" big={true}/>
+                    <Btn text = "Continue" big = {false}/>
+                </div>
+                );
+        }
+        
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />,root); // root안에 btn을 render
+    </script>
+</html>

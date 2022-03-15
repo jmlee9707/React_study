@@ -1,0 +1,39 @@
+<!-- 3-2 modifier 함수가 필요한 이유 -->
+<!DOCTYPE html>
+<html>
+    <body>
+        <!-- <span>Total clicks : 0</span>
+        <button id="btn">Click me</button> -->
+        <div id="root"></div>
+    </body>
+    <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    
+    <script type = "text/babel"> // 타입 적어줘야 함
+
+        const root = document.getElementById("root");
+        function App() { // 함수가 호출되면 react element가 반환
+            // const data = React.useState(0); // undefined, 함수(데이터를 바꿀 때 사용하는) 하나를 받아옴, 초기값 설정도 가능-괄호 안
+            // const counter = data[0];
+            // const modifier = data[1];
+            const [counter, setCounter] = React.useState(0); // 한줄로 데이터 넘겨지고 컴포넌트도 업데이트 
+            const onClick = () => {
+                // 어떤 값을 부여하든 modifier 함수는 그 값으로 업데이트를 하고 리렌더링을 일으킴
+                setCounter(counter + 1); // modifier 함수에서 counter를 리렌더링
+                console.log(counter);
+                // ReactDOM.render(<App />,root); // root안에 btn을 render
+            };
+
+            return(
+            <div>
+                <h3>Total Clicks : {counter}</h3> 
+                <button onClick = {onClick}>Click me</button> 
+            </div>
+            );
+        }
+        ReactDOM.render(<App />,root); // root안에 btn을 render
+
+    </script>
+</html>
