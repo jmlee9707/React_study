@@ -1,56 +1,26 @@
-// 7-3
+// 7-4
 
-// fetch, json을 진행 후 로딩을 끝냈기 때문에 반드시 setLoading(false)를 해줘야함
-// then대신에 async-await를 보편적으로 사용함
-// await을 감싸는 await을 만들 수 있음
-// movies.map((movie
-// ->map의 argument는 x, m, g 등등 마음대로 해도됨
-// 여기선 movie라고 정함
-// div key={movie.id} h2{movie.title}/h2
-// -> 이 컴포넌트들은 movie 배열에 있는 각 movie에서 변형되어 나온 것
+// Movie 컴포넌트는 medium_cover_image, title, summary, genres
+// -> 이 props를 모두 부모 컴포넌트로부터 받아옴
 
-// key={g} -> 따로 정해진 key가 없기 때문에 g를 가져와 key로 써줌
-// 단, g가 고유한 값일 경우에만 가능
+// coverImg={movie.medium_cover_image}
+// 자바스크립트에서는 medium_cover_image가 아닌mediumCoverImage로 쓰지만
+// 내가 만든 컴포넌트라 아무렇게 써도 됨.
+// 그러나 movie.medium_cover_image 에서는 API에서 가져오므로 API 정보와 똑같이 써야함
+// 이미지 element들을 alt속성을 가짐 -> alt={title}
 
-// import { useEffect, useState } from "react";
+
+// home 라우트(페이지)는 모든 영화를 보여주고
+// Movie 라우트는 영화 하나만 보여줌
+// 이렇게 라우트 별로 생각해야함
+// home 라우트는 기본적으로 App 컴포넌트 전체를 가지고 있게 만듦
+
+// App에 있는 것을 모두 Home라우트로 옮겼으니
+// App.js는 라우터를 렌더한다.
+
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const [movies, setMovies] = useState([]);
-  const getMovies = async () => {
-    const json = await (
-      await fetch(
-        `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`
-      )
-    ).json();
-    setMovies(json.data.movies);
-    setLoading(false);
-  };
-  useEffect(() => {
-    getMovies();
-  }, []);
-  return (
-    <div>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div>
-          {movies.map((movie) => ( // key 값 넘겨주기 필수
-            <div key={movie.id}> 
-              <img src={movie.medium_cover_image} />
-              <h2>{movie.title}</h2>
-              <p>{movie.summary}</p>
-              <ul>
-                {movie.genres.map((g) => (
-                  <li key={g}>{g}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
+  return null;
 }
 
 export default App;
