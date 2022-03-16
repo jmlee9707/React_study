@@ -1,26 +1,33 @@
-// 7-4
+// 7-5
 
-// Movie 컴포넌트는 medium_cover_image, title, summary, genres
-// -> 이 props를 모두 부모 컴포넌트로부터 받아옴
-
-// coverImg={movie.medium_cover_image}
-// 자바스크립트에서는 medium_cover_image가 아닌mediumCoverImage로 쓰지만
-// 내가 만든 컴포넌트라 아무렇게 써도 됨.
-// 그러나 movie.medium_cover_image 에서는 API에서 가져오므로 API 정보와 똑같이 써야함
-// 이미지 element들을 alt속성을 가짐 -> alt={title}
+// 1) 더이상 Switch는 쓰이지 않는다(버젼 6이상). 이제 그역할은 Routes가 대신할 것이다 (공식문서 참조), 또한 Route 태그의 exact 속성도 더이상 쓰이지 않으며 
+// Routes가 알아서 최적의 경로배정을 해주기 때문에 Switch를 썼을 때의 고민을 말끔히 해결해 준다
+// 2) BROWSER ROUTER가 일반적인 방식이며, HASHROUTER는 잘 쓰이진 않는다(뒤에 #이런게 붙음)
+// 3) 한 라우트에서 다른 라우트로 가고 싶을 땐 a태그의 href을 속성이 가장 먼저 생각이 날 것이고, 
+// 실제로도 그렇게 코드를 작성하면 이동이 가능하다. 하지만 페이지 전체가 새로고침되기 때문에 리액트의 장점을 깎아먹는다. 
+// 따라서 재실행되는 것을 막기 위해 react-router-dom에서 import한 link 태그를 사용하면 된다
 
 
-// home 라우트(페이지)는 모든 영화를 보여주고
-// Movie 라우트는 영화 하나만 보여줌
-// 이렇게 라우트 별로 생각해야함
-// home 라우트는 기본적으로 App 컴포넌트 전체를 가지고 있게 만듦
 
-// App에 있는 것을 모두 Home라우트로 옮겼으니
-// App.js는 라우터를 렌더한다.
-
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Detail from "./routes/Detail";
+import Home from "./routes/Home";
 function App() {
-  return null;
+  return (
+    <Router>
+      <Switch>
+        <Route path="/abot-us">
+          <h1>Hello</h1>
+        </Route>
+        <Route path="/movie/:id">
+          <Detail />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
